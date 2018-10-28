@@ -1,0 +1,20 @@
+version: '3'
+services:
+  web:
+    container_name: web
+    build: .
+    ports:
+     - "4000:8080"
+    links:
+      - db
+
+  db:
+    container_name: db
+    image: mongo
+    volumes:
+       - db-data:/data/db
+    expose:
+      - "27017"
+
+volumes: 
+  db-data:
