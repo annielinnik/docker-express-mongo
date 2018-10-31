@@ -16,5 +16,5 @@ services:
     expose:
       - "27017"
 
-volumes: 
+volumes:
   db-data:

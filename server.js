@@ -1,29 +1,29 @@
 "use strict";
 
 const express = require("express");
-const mongo = require("mongodb");
+const { MongoClient } = require("mongodb");
 
 const PORT = 8080;
 const url = "mongodb://db:27017/";
-
 const app = express();
 
 app.get("/", (req, res) => {
   try {
-    mongo.MongoClient.connect(
+    MongoClient.connect(
       url,
       (err, db) => {
         if (err) throw err;
 
-        db
+        db          
           .db("docker-test")
           .collection("users")
           .find()
-          .toArray((err, docs) => {
+          .toArray((err, users) => {
             if (err) throw err;
 
-            res.send(docs);
+            res.send(users);
           });
+
       }
     );
   } catch (e) {
